@@ -6,6 +6,7 @@ const fetch = require('node-fetch');
 
 // Global config
 const HSx = 'HS4';
+const YEAR = 2020;
 const template = JSON.parse(fs.readFileSync(`./template_${HSx}.json`).toString());
 
 function drawTreemap(countryName, countryISO2, oecCode, HSx, im, titleOffset, data, netPort) {
@@ -13,7 +14,7 @@ function drawTreemap(countryName, countryISO2, oecCode, HSx, im, titleOffset, da
   const [width, height] = getWidthHeight(netPort);
   const _id = `${countryISO2.replace(/\W/g,'_')}_nt${im>0?'im':'ex'}`;
   const _titleSize = Math.ceil(Math.max(11, width/100));
-  const _value = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(netPort/1000)+' M'
+  const _value = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(netPort/1000)+' M'; //netPort value in 1k USD
 
   // 2. defining mapping
   const mapping = {
@@ -22,10 +23,6 @@ function drawTreemap(countryName, countryISO2, oecCode, HSx, im, titleOffset, da
     color: { value: "Section" },
     label: { value: [HSx, "Trade Value"] }
   };
-  /**
-   * // Fix bug - aggregation iterater over string  'c', 's', 'v' ... , add following line to \node_modules\@rawgraphs\rawgraphs-core\lib\index.cjs.js:4098 
-   *  aggregatorExpression = 'csvDistinct';
-   */
 
   // 3. define visualOptions
   const visualOptions = {
@@ -43,7 +40,7 @@ function drawTreemap(countryName, countryISO2, oecCode, HSx, im, titleOffset, da
     .replace(/^<svg/, '<svg xmlns="http://www.w3.org/2000/svg"')
     // add top-labels, offsets and newline after <svg>
     .replace('<g transform="translate(10,10)" id="viz"><g id="leaves">',`
-    <g transform="translate(10,${titleOffset})" id="${_id}_2020"><text dominant-baseline="text-before-edge" class="txt"><tspan x="20" y="0.2em" style="font-family: Arial, sans-serif; font-size: ${_titleSize}px; fill: black; font-weight: bold;">${countryName} net ${im>0?'import':'export'} ${_value}</tspan></text><g id="${_id}_2020_leaves" transform="translate(0, ${Math.ceil(15+(_titleSize-11)*1.5)})">`)
+    <g transform="translate(10,${titleOffset})" id="${_id}_${YEAR}"><text dominant-baseline="text-before-edge" class="txt"><tspan x="20" y="0.2em" style="font-family: Arial, sans-serif; font-size: ${_titleSize}px; fill: black; font-weight: bold;">${countryName} net ${im>0?'import':'export'} ${_value}</tspan></text><g id="${_id}_${YEAR}_leaves" transform="translate(0, ${Math.ceil(15+(_titleSize-11)*1.5)})">`)
     // add global id
     .replace(/("(?:url\()?#?)((?:path|clip)\d+\)?")/g, `$1${_id}_$2`)
     // remove extra style
@@ -68,16 +65,25 @@ async function getNetportData(HSx, oecCodes) {
   const netImportData = JSON.parse(JSON.stringify(template));
   const netExportData = JSON.parse(JSON.stringify(template));
   for (const oecCode of oecCodes) {
-    const url = (port) => `https://oec.world/olap-proxy/data?cube=trade_i_baci_a_92&${port}er+Country=${oecCode}&drilldowns=${HSx}&measures=Trade+Value&parents=true&Year=2020&sparse=false&locale=en`;
-    const importData = (await (await fetch(url('Import'))).json()).data;
-    const exportData = (await (await fetch(url('Export'))).json()).data;
-    if (!importData || !exportData || !Array.isArray(importData) || !Array.isArray(exportData) || importData.length == 0 || exportData.length == 0) continue;
+    const url = (port) => `https://oec.world/olap-proxy/data?cube=trade_i_baci_a_92&${port}er+Country=${oecCode}&drilldowns=${HSx}&measures=Trade+Value&parents=true&Year=${YEAR}&sparse=false&locale=en`;
+    let importData = null;
+    let exportData = null;
+    try {      
+      importData = (await (await fetch(url('Import'))).json()).data;
+      exportData = (await (await fetch(url('Export'))).json()).data;
+    } catch (error) {
+      console.log(error)
+    }
+    if (!importData || !exportData || !Array.isArray(importData) || !Array.isArray(exportData) || importData.length == 0 || exportData.length == 0) {
+      continue;
+    }
     console.log(oecCode, importData.length, exportData.length)
     for (let index = 0; index < netImportData.length; index++) {
       const hsxid = template[index][`${HSx} ID`];
       const importValue = importData.find(i => i[`${HSx} ID`] == hsxid)?.['Trade Value'] || 0;
       const exportValue = exportData.find(i => i[`${HSx} ID`] == hsxid)?.['Trade Value'] || 0;
-      const value = (importValue-exportValue)/100000; // cent -> thousand$
+      const conversionRate = (year) => year>=2020 ? 10000 : 1000; // dime(2020) or dollar(before 2020) -> thousand dollar$
+      const value = (importValue-exportValue)/conversionRate(YEAR);
       if (value > 0) {
         netImportData[index]['Trade Value'] += value;
       } else if (value < 0) {
@@ -90,7 +96,9 @@ async function getNetportData(HSx, oecCodes) {
 
   // fs.writeFileSync('./netports.json', JSON.stringify(netportData))
   console.log((oecCodes).join(' '), 'netImport:', netImport, 'netExport', netExport)
-  if (netImport == 0 || netExport == 0) return null;
+  if (netImport == 0 || netExport == 0) {
+    return null;
+  }
   return {
     netImportData: netImportDataClean,
     netExportData: netExportDataClean,
@@ -99,7 +107,7 @@ async function getNetportData(HSx, oecCodes) {
   }
 
   function cleanPortData(portData) {
-    const threshold = 2000; // 20 million $
+    const threshold = 20000; // discard trade less than 20 million $
     const netportData = [];
     let netPort = 0;
     let sectionId = 0;
@@ -135,17 +143,25 @@ async function makeMap(HSx, oecCodes, countryName, countryISO2, xOffset, yOffset
   const mapHeight = importOffset * 4 + exportHeight + exportOffset + 20;
   let svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${mapWidth}" height="${mapHeight}">
   <rect width="${mapWidth}" height="${mapHeight}" x="0" y="0" fill="#FFFFFF" id="backgorund"/>
-  <g transform="translate(${xOffset},${yOffset})" id="${countryISO2.replace(/\W/g, '')}_2020">
+    <g transform="translate(${xOffset},${yOffset})" id="${countryISO2.replace(/\W/g, '')}_${YEAR}">
   ${importSvgG}
   ${exportSvgG}
-  </g>\n</svg>`;
+    </g>\n</svg>`;
   return svg;
 }
 
 async function makeMapGroup(HSx,mapWidth, mapHeight) {
   let svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${mapWidth}" height="${mapHeight}">
-  <rect width="${mapWidth}" height="${mapHeight}" x="0" y="0" fill="#FFFFFF" id="backgorund"/>\n`;
-  for(const country of fs.readFileSync('./countries1.tsv').toString().split('\r\n').map(c=>c.split('\t'))){
+  <rect width="${mapWidth}" height="${mapHeight}" x="0" y="0" fill="#FFFFFF" id="backgorund"/>
+  <g id="legend" transform="translate(10,1500)"><g transform="translate(5,0)"><g class="legendColor" transform="translate(0,0)"><g class="legendCells" transform="translate(0,16)"><g class="cell" transform="translate(0, 0)"><rect class="swatch" height="15" width="15" style="fill: rgb(158, 1, 66);"/><text class="label" transform="translate(20, 0)"><tspan x="0" dy="0em">Animal Hides</tspan></text></g><g class="cell" transform="translate(0, 21)"><rect class="swatch" height="15" width="15" style="fill: rgb(185, 31, 72);"/><text class="label" transform="translate(20, 0)"><tspan x="0" dy="0em">Animal Products</tspan></text></g><g class="cell" transform="translate(0, 42)"><rect class="swatch" height="15" width="15" style="fill: rgb(209, 60, 75);"/><text class="label" transform="translate(20, 0)"><tspan x="0" dy="0em">Animal and Vegetable</tspan><tspan x="0" dy="1.2em">Bi-Products</tspan></text></g><g class="cell" transform="translate(0, 78.609375)"><rect class="swatch" height="15" width="15" style="fill: rgb(228, 86, 73);"/><text class="label" transform="translate(20, 0)"><tspan x="0" dy="0em">Arts and Antiques</tspan></text></g><g class="cell" transform="translate(0, 99.609375)"><rect class="swatch" height="15" width="15" style="fill: rgb(240, 112, 74);"/><text class="label" transform="translate(20, 0)"><tspan x="0" dy="0em">Chemical Products</tspan></text></g><g class="cell" transform="translate(0, 120.609375)"><rect class="swatch" height="15" width="15" style="fill: rgb(248, 142, 83);"/><text class="label" transform="translate(20, 0)"><tspan x="0" dy="0em">Foodstuffs</tspan></text></g><g class="cell" transform="translate(0, 141.609375)"><rect class="swatch" height="15" width="15" style="fill: rgb(252, 172, 99);"/><text class="label" transform="translate(20, 0)"><tspan x="0" dy="0em">Footwear and Headwear</tspan></text></g><g class="cell" transform="translate(0, 162.609375)"><rect class="swatch" height="15" width="15" style="fill: rgb(253, 198, 118);"/><text class="label" transform="translate(20, 0)"><tspan x="0" dy="0em">Instruments</tspan></text></g><g class="cell" transform="translate(0, 183.609375)"><rect class="swatch" height="15" width="15" style="fill: rgb(254, 221, 141);"/><text class="label" transform="translate(20, 0)"><tspan x="0" dy="0em">Machines</tspan></text></g><g class="cell" transform="translate(0, 204.609375)"><rect class="swatch" height="15" width="15" style="fill: rgb(254, 238, 163);"/><text class="label" transform="translate(20, 0)"><tspan x="0" dy="0em">Metals</tspan></text></g><g class="cell" transform="translate(0, 225.609375)"><rect class="swatch" height="15" width="15" style="fill: rgb(251, 248, 176);"/><text class="label" transform="translate(20, 0)"><tspan x="0" dy="0em">Mineral Products</tspan></text></g><g class="cell" transform="translate(0, 246.609375)"><rect class="swatch" height="15" width="15" style="fill: rgb(241, 249, 171);"/><text class="label" transform="translate(20, 0)"><tspan x="0" dy="0em">Miscellaneous</tspan></text></g><g class="cell" transform="translate(0, 267.609375)"><rect class="swatch" height="15" width="15" style="fill: rgb(224, 243, 161);"/><text class="label" transform="translate(20, 0)"><tspan x="0" dy="0em">Paper Goods</tspan></text></g><g class="cell" transform="translate(0, 288.609375)"><rect class="swatch" height="15" width="15" style="fill: rgb(200, 233, 159);"/><text class="label" transform="translate(20, 0)"><tspan x="0" dy="0em">Plastics and Rubbers</tspan></text></g><g class="cell" transform="translate(0, 309.609375)"><rect class="swatch" height="15" width="15" style="fill: rgb(169, 221, 162);"/><text class="label" transform="translate(20, 0)"><tspan x="0" dy="0em">Precious Metals</tspan></text></g><g class="cell" transform="translate(0, 330.609375)"><rect class="swatch" height="15" width="15" style="fill: rgb(137, 207, 165);"/><text class="label" transform="translate(20, 0)"><tspan x="0" dy="0em">Stone And Glass</tspan></text></g><g class="cell" transform="translate(0, 351.609375)"><rect class="swatch" height="15" width="15" style="fill: rgb(105, 189, 169);"/><text class="label" transform="translate(20, 0)"><tspan x="0" dy="0em">Textiles</tspan></text></g><g class="cell" transform="translate(0, 372.609375)"><rect class="swatch" height="15" width="15" style="fill: rgb(78, 164, 176);"/><text class="label" transform="translate(20, 0)"><tspan x="0" dy="0em">Transportation</tspan></text></g><g class="cell" transform="translate(0, 393.609375)"><rect class="swatch" height="15" width="15" style="fill: rgb(66, 136, 181);"/><text class="label" transform="translate(20, 0)"><tspan x="0" dy="0em">Vegetable Products</tspan></text></g><g class="cell" transform="translate(0, 414.609375)"><rect class="swatch" height="15" width="15" style="fill: rgb(74, 108, 174);"/><text class="label" transform="translate(20, 0)"><tspan x="0" dy="0em">Weapons</tspan></text></g><g class="cell" transform="translate(0, 435.609375)"><rect class="swatch" height="15" width="15" style="fill: rgb(94, 79, 162);"/><text class="label" transform="translate(20, 0)"><tspan x="0" dy="0em">Wood Products</tspan></text></g></g><text class="legendTitle"><tspan x="0" dy="0em">Section</tspan></text></g></g></g>
+  <g id="legend" transform="translate(59830,19500)"><g transform="translate(5,0)"><g class="legendColor" transform="translate(0,0)"><g class="legendCells" transform="translate(0,16)"><g class="cell" transform="translate(0, 0)"><rect class="swatch" height="15" width="15" style="fill: rgb(158, 1, 66);"/><text class="label" transform="translate(20, 0)"><tspan x="0" dy="0em">Animal Hides</tspan></text></g><g class="cell" transform="translate(0, 21)"><rect class="swatch" height="15" width="15" style="fill: rgb(185, 31, 72);"/><text class="label" transform="translate(20, 0)"><tspan x="0" dy="0em">Animal Products</tspan></text></g><g class="cell" transform="translate(0, 42)"><rect class="swatch" height="15" width="15" style="fill: rgb(209, 60, 75);"/><text class="label" transform="translate(20, 0)"><tspan x="0" dy="0em">Animal and Vegetable</tspan><tspan x="0" dy="1.2em">Bi-Products</tspan></text></g><g class="cell" transform="translate(0, 78.609375)"><rect class="swatch" height="15" width="15" style="fill: rgb(228, 86, 73);"/><text class="label" transform="translate(20, 0)"><tspan x="0" dy="0em">Arts and Antiques</tspan></text></g><g class="cell" transform="translate(0, 99.609375)"><rect class="swatch" height="15" width="15" style="fill: rgb(240, 112, 74);"/><text class="label" transform="translate(20, 0)"><tspan x="0" dy="0em">Chemical Products</tspan></text></g><g class="cell" transform="translate(0, 120.609375)"><rect class="swatch" height="15" width="15" style="fill: rgb(248, 142, 83);"/><text class="label" transform="translate(20, 0)"><tspan x="0" dy="0em">Foodstuffs</tspan></text></g><g class="cell" transform="translate(0, 141.609375)"><rect class="swatch" height="15" width="15" style="fill: rgb(252, 172, 99);"/><text class="label" transform="translate(20, 0)"><tspan x="0" dy="0em">Footwear and Headwear</tspan></text></g><g class="cell" transform="translate(0, 162.609375)"><rect class="swatch" height="15" width="15" style="fill: rgb(253, 198, 118);"/><text class="label" transform="translate(20, 0)"><tspan x="0" dy="0em">Instruments</tspan></text></g><g class="cell" transform="translate(0, 183.609375)"><rect class="swatch" height="15" width="15" style="fill: rgb(254, 221, 141);"/><text class="label" transform="translate(20, 0)"><tspan x="0" dy="0em">Machines</tspan></text></g><g class="cell" transform="translate(0, 204.609375)"><rect class="swatch" height="15" width="15" style="fill: rgb(254, 238, 163);"/><text class="label" transform="translate(20, 0)"><tspan x="0" dy="0em">Metals</tspan></text></g><g class="cell" transform="translate(0, 225.609375)"><rect class="swatch" height="15" width="15" style="fill: rgb(251, 248, 176);"/><text class="label" transform="translate(20, 0)"><tspan x="0" dy="0em">Mineral Products</tspan></text></g><g class="cell" transform="translate(0, 246.609375)"><rect class="swatch" height="15" width="15" style="fill: rgb(241, 249, 171);"/><text class="label" transform="translate(20, 0)"><tspan x="0" dy="0em">Miscellaneous</tspan></text></g><g class="cell" transform="translate(0, 267.609375)"><rect class="swatch" height="15" width="15" style="fill: rgb(224, 243, 161);"/><text class="label" transform="translate(20, 0)"><tspan x="0" dy="0em">Paper Goods</tspan></text></g><g class="cell" transform="translate(0, 288.609375)"><rect class="swatch" height="15" width="15" style="fill: rgb(200, 233, 159);"/><text class="label" transform="translate(20, 0)"><tspan x="0" dy="0em">Plastics and Rubbers</tspan></text></g><g class="cell" transform="translate(0, 309.609375)"><rect class="swatch" height="15" width="15" style="fill: rgb(169, 221, 162);"/><text class="label" transform="translate(20, 0)"><tspan x="0" dy="0em">Precious Metals</tspan></text></g><g class="cell" transform="translate(0, 330.609375)"><rect class="swatch" height="15" width="15" style="fill: rgb(137, 207, 165);"/><text class="label" transform="translate(20, 0)"><tspan x="0" dy="0em">Stone And Glass</tspan></text></g><g class="cell" transform="translate(0, 351.609375)"><rect class="swatch" height="15" width="15" style="fill: rgb(105, 189, 169);"/><text class="label" transform="translate(20, 0)"><tspan x="0" dy="0em">Textiles</tspan></text></g><g class="cell" transform="translate(0, 372.609375)"><rect class="swatch" height="15" width="15" style="fill: rgb(78, 164, 176);"/><text class="label" transform="translate(20, 0)"><tspan x="0" dy="0em">Transportation</tspan></text></g><g class="cell" transform="translate(0, 393.609375)"><rect class="swatch" height="15" width="15" style="fill: rgb(66, 136, 181);"/><text class="label" transform="translate(20, 0)"><tspan x="0" dy="0em">Vegetable Products</tspan></text></g><g class="cell" transform="translate(0, 414.609375)"><rect class="swatch" height="15" width="15" style="fill: rgb(74, 108, 174);"/><text class="label" transform="translate(20, 0)"><tspan x="0" dy="0em">Weapons</tspan></text></g><g class="cell" transform="translate(0, 435.609375)"><rect class="swatch" height="15" width="15" style="fill: rgb(94, 79, 162);"/><text class="label" transform="translate(20, 0)"><tspan x="0" dy="0em">Wood Products</tspan></text></g></g><text class="legendTitle"><tspan x="0" dy="0em">Section</tspan></text></g></g></g>\n`;
+
+  for(const country of fs.readFileSync('./countries1.tsv').toString().split(/\r?\n/).map(c=>c.split('\t'))){
+    if (country.length===3){
+      // add continent group
+      svg += `  </g>\n  <g transform="translate(${country[1]},${country[2]})" id="${country[0]}">\n`
+      continue;
+    }
     const oecCode = country[0];
     const iso2 = country[1];
     const latitude = country[2];
@@ -155,11 +171,14 @@ async function makeMapGroup(HSx,mapWidth, mapHeight) {
     const yOffset = country[6] || 0;
     console.log(oecCode, countryName);
     let singleSvg = await makeMap(HSx, [oecCode], countryName, iso2, xOffset, yOffset);
-    if (!singleSvg) continue;
+    if (!singleSvg) {
+      fs.appendFileSync('./countries1.tsv', country.join('\t')+'\n');
+      continue;
+    } 
     svg += singleSvg.split('\n').slice(2,-1).join('\n')+'\n';
   }
-  svg +=`</svg>\n`
-  fs.writeFileSync(`./worldtrademap_.svg`, svg)
+  svg +=`</svg>`
+  fs.writeFileSync(`./worldtrademap_${YEAR}.svg`, svg)
 }
 
 async function makeGroupMap(HSx, groupName) {
@@ -177,9 +196,39 @@ async function makeGroupMap(HSx, groupName) {
 
 
 function getWidthHeight(area) {
-  const scale = 0.1;
+  // https://www.usinflationcalculator.com/ 
+  // compare to the end of 2020 (fill-in 2021) as 100%
+  const CumulativeInflation = {
+    1995: 1.744,
+    1996: 1.704,
+    1997: 1.678,
+    1998: 1.642,
+    1999: 1.589,
+    2000: 1.546,
+    2001: 1.521,
+    2002: 1.487,
+    2003: 1.448,
+    2004: 1.401,
+    2005: 1.357,
+    2006: 1.319,
+    2007: 1.271,
+    2008: 1.275,
+    2009: 1.255,
+    2010: 1.216,
+    2011: 1.192,
+    2012: 1.174,
+    2013: 1.156,
+    2014: 1.154,
+    2015: 1.140,
+    2016: 1.116,
+    2017: 1.089,
+    2018: 1.070,
+    2019: 1.057,
+    2020: 1.000,
+  }
+  // area in 1k USD; scale to 1px = 10k USD equivalent as of 2020
+  const scale = 0.01 * CumulativeInflation[YEAR];
   const ratio = 2; //16/9; //1.618;
-  // area in 1k US$; draw 1px = 10k US$
   width  = Math.ceil(Math.sqrt(area*scale*ratio));
   height = Math.ceil(Math.sqrt(area*scale/ratio));
   return [width, height]
