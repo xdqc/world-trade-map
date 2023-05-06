@@ -1,6 +1,6 @@
 # World Trade Map 
 
-[![wtm-2020](docs/wtm_1997-2020.gif)](https://xdqc.github.io/world-trade-map/)
+[![wtm-2021](docs/worldtrademap-2021.png)](https://xdqc.github.io/world-trade-map/)
 
 
 Area-preserving pseudo projected cartogram treemaps of world countries annual net import/export in US$ by HS4 categories from 1995 to 2020:
@@ -30,7 +30,8 @@ Area-preserving pseudo projected cartogram treemaps of world countries annual ne
 [2017](https://xdqc.github.io/world-trade-map/worldtrademap-2017.html)
 [2018](https://xdqc.github.io/world-trade-map/worldtrademap-2018.html)
 [2019](https://xdqc.github.io/world-trade-map/worldtrademap-2019.html)
-[2020](https://xdqc.github.io/world-trade-map/index.html)
+[2020](https://xdqc.github.io/world-trade-map/worldtrademap-2020.html)
+[2021](https://xdqc.github.io/world-trade-map/index.html)
 
 The maps present intuitive answers to questions such as:
 
@@ -43,6 +44,8 @@ The maps present intuitive answers to questions such as:
 - How is Hong Kong being the infusion tube of Chinese economy?
 
 and much more...
+
+[![wtm-2020](docs/wtm_1997-2020.gif)](https://xdqc.github.io/world-trade-map/)
 
 ## FAQ
 

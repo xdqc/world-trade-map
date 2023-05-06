@@ -1,12 +1,12 @@
-const { chart } = require('@rawgraphs/rawgraphs-core')
-const { treemap } = require('@rawgraphs/rawgraphs-charts')
-const { JSDOM } = require("jsdom");
-const fs = require('fs')
-const fetch = require('node-fetch');
+import { chart } from '@rawgraphs/rawgraphs-core';
+import { treemap }  from '@rawgraphs/rawgraphs-charts';
+import { JSDOM } from "jsdom";
+import fs from 'fs';
+import fetch from 'node-fetch';
 
 // Global config
 const HSx = 'HS4';
-const YEAR = 2020;
+const YEAR = 2021;
 const template = JSON.parse(fs.readFileSync(`./template_${HSx}.json`).toString());
 
 function drawTreemap(countryName, countryISO2, oecCode, HSx, im, titleOffset, data, netPort) {
@@ -82,7 +82,9 @@ async function getNetportData(HSx, oecCodes) {
       const hsxid = template[index][`${HSx} ID`];
       const importValue = importData.find(i => i[`${HSx} ID`] == hsxid)?.['Trade Value'] || 0;
       const exportValue = exportData.find(i => i[`${HSx} ID`] == hsxid)?.['Trade Value'] || 0;
-      const conversionRate = (year) => year>=2020 ? 10000 : 1000; // dime(2020) or dollar(before 2020) -> thousand dollar$
+      // convert oec trade value (in USD) to thousand USD
+      // the most recent year (last year of current year) oec data is using 0.1 USD
+      const conversionRate = (year) => year>=(new Date().getFullYear()-1) ? 10000 : 1000; 
       const value = (importValue-exportValue)/conversionRate(YEAR);
       if (value > 0) {
         netImportData[index]['Trade Value'] += value;
@@ -154,11 +156,13 @@ async function makeMapGroup(HSx,mapWidth, mapHeight) {
   let svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${mapWidth}" height="${mapHeight}">
   <rect width="${mapWidth}" height="${mapHeight}" x="0" y="0" fill="#FFFFFF" id="backgorund"/>
   <g id="legend" transform="translate(10,1500)"><g transform="translate(5,0)"><g class="legendColor" transform="translate(0,0)"><g class="legendCells" transform="translate(0,16)"><g class="cell" transform="translate(0, 0)"><rect class="swatch" height="15" width="15" style="fill: rgb(158, 1, 66);"/><text class="label" transform="translate(20, 0)"><tspan x="0" dy="0em">Animal Hides</tspan></text></g><g class="cell" transform="translate(0, 21)"><rect class="swatch" height="15" width="15" style="fill: rgb(185, 31, 72);"/><text class="label" transform="translate(20, 0)"><tspan x="0" dy="0em">Animal Products</tspan></text></g><g class="cell" transform="translate(0, 42)"><rect class="swatch" height="15" width="15" style="fill: rgb(209, 60, 75);"/><text class="label" transform="translate(20, 0)"><tspan x="0" dy="0em">Animal and Vegetable</tspan><tspan x="0" dy="1.2em">Bi-Products</tspan></text></g><g class="cell" transform="translate(0, 78.609375)"><rect class="swatch" height="15" width="15" style="fill: rgb(228, 86, 73);"/><text class="label" transform="translate(20, 0)"><tspan x="0" dy="0em">Arts and Antiques</tspan></text></g><g class="cell" transform="translate(0, 99.609375)"><rect class="swatch" height="15" width="15" style="fill: rgb(240, 112, 74);"/><text class="label" transform="translate(20, 0)"><tspan x="0" dy="0em">Chemical Products</tspan></text></g><g class="cell" transform="translate(0, 120.609375)"><rect class="swatch" height="15" width="15" style="fill: rgb(248, 142, 83);"/><text class="label" transform="translate(20, 0)"><tspan x="0" dy="0em">Foodstuffs</tspan></text></g><g class="cell" transform="translate(0, 141.609375)"><rect class="swatch" height="15" width="15" style="fill: rgb(252, 172, 99);"/><text class="label" transform="translate(20, 0)"><tspan x="0" dy="0em">Footwear and Headwear</tspan></text></g><g class="cell" transform="translate(0, 162.609375)"><rect class="swatch" height="15" width="15" style="fill: rgb(253, 198, 118);"/><text class="label" transform="translate(20, 0)"><tspan x="0" dy="0em">Instruments</tspan></text></g><g class="cell" transform="translate(0, 183.609375)"><rect class="swatch" height="15" width="15" style="fill: rgb(254, 221, 141);"/><text class="label" transform="translate(20, 0)"><tspan x="0" dy="0em">Machines</tspan></text></g><g class="cell" transform="translate(0, 204.609375)"><rect class="swatch" height="15" width="15" style="fill: rgb(254, 238, 163);"/><text class="label" transform="translate(20, 0)"><tspan x="0" dy="0em">Metals</tspan></text></g><g class="cell" transform="translate(0, 225.609375)"><rect class="swatch" height="15" width="15" style="fill: rgb(251, 248, 176);"/><text class="label" transform="translate(20, 0)"><tspan x="0" dy="0em">Mineral Products</tspan></text></g><g class="cell" transform="translate(0, 246.609375)"><rect class="swatch" height="15" width="15" style="fill: rgb(241, 249, 171);"/><text class="label" transform="translate(20, 0)"><tspan x="0" dy="0em">Miscellaneous</tspan></text></g><g class="cell" transform="translate(0, 267.609375)"><rect class="swatch" height="15" width="15" style="fill: rgb(224, 243, 161);"/><text class="label" transform="translate(20, 0)"><tspan x="0" dy="0em">Paper Goods</tspan></text></g><g class="cell" transform="translate(0, 288.609375)"><rect class="swatch" height="15" width="15" style="fill: rgb(200, 233, 159);"/><text class="label" transform="translate(20, 0)"><tspan x="0" dy="0em">Plastics and Rubbers</tspan></text></g><g class="cell" transform="translate(0, 309.609375)"><rect class="swatch" height="15" width="15" style="fill: rgb(169, 221, 162);"/><text class="label" transform="translate(20, 0)"><tspan x="0" dy="0em">Precious Metals</tspan></text></g><g class="cell" transform="translate(0, 330.609375)"><rect class="swatch" height="15" width="15" style="fill: rgb(137, 207, 165);"/><text class="label" transform="translate(20, 0)"><tspan x="0" dy="0em">Stone And Glass</tspan></text></g><g class="cell" transform="translate(0, 351.609375)"><rect class="swatch" height="15" width="15" style="fill: rgb(105, 189, 169);"/><text class="label" transform="translate(20, 0)"><tspan x="0" dy="0em">Textiles</tspan></text></g><g class="cell" transform="translate(0, 372.609375)"><rect class="swatch" height="15" width="15" style="fill: rgb(78, 164, 176);"/><text class="label" transform="translate(20, 0)"><tspan x="0" dy="0em">Transportation</tspan></text></g><g class="cell" transform="translate(0, 393.609375)"><rect class="swatch" height="15" width="15" style="fill: rgb(66, 136, 181);"/><text class="label" transform="translate(20, 0)"><tspan x="0" dy="0em">Vegetable Products</tspan></text></g><g class="cell" transform="translate(0, 414.609375)"><rect class="swatch" height="15" width="15" style="fill: rgb(74, 108, 174);"/><text class="label" transform="translate(20, 0)"><tspan x="0" dy="0em">Weapons</tspan></text></g><g class="cell" transform="translate(0, 435.609375)"><rect class="swatch" height="15" width="15" style="fill: rgb(94, 79, 162);"/><text class="label" transform="translate(20, 0)"><tspan x="0" dy="0em">Wood Products</tspan></text></g></g><text class="legendTitle"><tspan x="0" dy="0em">Section</tspan></text></g></g></g>
-  <g id="legend" transform="translate(59830,19500)"><g transform="translate(5,0)"><g class="legendColor" transform="translate(0,0)"><g class="legendCells" transform="translate(0,16)"><g class="cell" transform="translate(0, 0)"><rect class="swatch" height="15" width="15" style="fill: rgb(158, 1, 66);"/><text class="label" transform="translate(20, 0)"><tspan x="0" dy="0em">Animal Hides</tspan></text></g><g class="cell" transform="translate(0, 21)"><rect class="swatch" height="15" width="15" style="fill: rgb(185, 31, 72);"/><text class="label" transform="translate(20, 0)"><tspan x="0" dy="0em">Animal Products</tspan></text></g><g class="cell" transform="translate(0, 42)"><rect class="swatch" height="15" width="15" style="fill: rgb(209, 60, 75);"/><text class="label" transform="translate(20, 0)"><tspan x="0" dy="0em">Animal and Vegetable</tspan><tspan x="0" dy="1.2em">Bi-Products</tspan></text></g><g class="cell" transform="translate(0, 78.609375)"><rect class="swatch" height="15" width="15" style="fill: rgb(228, 86, 73);"/><text class="label" transform="translate(20, 0)"><tspan x="0" dy="0em">Arts and Antiques</tspan></text></g><g class="cell" transform="translate(0, 99.609375)"><rect class="swatch" height="15" width="15" style="fill: rgb(240, 112, 74);"/><text class="label" transform="translate(20, 0)"><tspan x="0" dy="0em">Chemical Products</tspan></text></g><g class="cell" transform="translate(0, 120.609375)"><rect class="swatch" height="15" width="15" style="fill: rgb(248, 142, 83);"/><text class="label" transform="translate(20, 0)"><tspan x="0" dy="0em">Foodstuffs</tspan></text></g><g class="cell" transform="translate(0, 141.609375)"><rect class="swatch" height="15" width="15" style="fill: rgb(252, 172, 99);"/><text class="label" transform="translate(20, 0)"><tspan x="0" dy="0em">Footwear and Headwear</tspan></text></g><g class="cell" transform="translate(0, 162.609375)"><rect class="swatch" height="15" width="15" style="fill: rgb(253, 198, 118);"/><text class="label" transform="translate(20, 0)"><tspan x="0" dy="0em">Instruments</tspan></text></g><g class="cell" transform="translate(0, 183.609375)"><rect class="swatch" height="15" width="15" style="fill: rgb(254, 221, 141);"/><text class="label" transform="translate(20, 0)"><tspan x="0" dy="0em">Machines</tspan></text></g><g class="cell" transform="translate(0, 204.609375)"><rect class="swatch" height="15" width="15" style="fill: rgb(254, 238, 163);"/><text class="label" transform="translate(20, 0)"><tspan x="0" dy="0em">Metals</tspan></text></g><g class="cell" transform="translate(0, 225.609375)"><rect class="swatch" height="15" width="15" style="fill: rgb(251, 248, 176);"/><text class="label" transform="translate(20, 0)"><tspan x="0" dy="0em">Mineral Products</tspan></text></g><g class="cell" transform="translate(0, 246.609375)"><rect class="swatch" height="15" width="15" style="fill: rgb(241, 249, 171);"/><text class="label" transform="translate(20, 0)"><tspan x="0" dy="0em">Miscellaneous</tspan></text></g><g class="cell" transform="translate(0, 267.609375)"><rect class="swatch" height="15" width="15" style="fill: rgb(224, 243, 161);"/><text class="label" transform="translate(20, 0)"><tspan x="0" dy="0em">Paper Goods</tspan></text></g><g class="cell" transform="translate(0, 288.609375)"><rect class="swatch" height="15" width="15" style="fill: rgb(200, 233, 159);"/><text class="label" transform="translate(20, 0)"><tspan x="0" dy="0em">Plastics and Rubbers</tspan></text></g><g class="cell" transform="translate(0, 309.609375)"><rect class="swatch" height="15" width="15" style="fill: rgb(169, 221, 162);"/><text class="label" transform="translate(20, 0)"><tspan x="0" dy="0em">Precious Metals</tspan></text></g><g class="cell" transform="translate(0, 330.609375)"><rect class="swatch" height="15" width="15" style="fill: rgb(137, 207, 165);"/><text class="label" transform="translate(20, 0)"><tspan x="0" dy="0em">Stone And Glass</tspan></text></g><g class="cell" transform="translate(0, 351.609375)"><rect class="swatch" height="15" width="15" style="fill: rgb(105, 189, 169);"/><text class="label" transform="translate(20, 0)"><tspan x="0" dy="0em">Textiles</tspan></text></g><g class="cell" transform="translate(0, 372.609375)"><rect class="swatch" height="15" width="15" style="fill: rgb(78, 164, 176);"/><text class="label" transform="translate(20, 0)"><tspan x="0" dy="0em">Transportation</tspan></text></g><g class="cell" transform="translate(0, 393.609375)"><rect class="swatch" height="15" width="15" style="fill: rgb(66, 136, 181);"/><text class="label" transform="translate(20, 0)"><tspan x="0" dy="0em">Vegetable Products</tspan></text></g><g class="cell" transform="translate(0, 414.609375)"><rect class="swatch" height="15" width="15" style="fill: rgb(74, 108, 174);"/><text class="label" transform="translate(20, 0)"><tspan x="0" dy="0em">Weapons</tspan></text></g><g class="cell" transform="translate(0, 435.609375)"><rect class="swatch" height="15" width="15" style="fill: rgb(94, 79, 162);"/><text class="label" transform="translate(20, 0)"><tspan x="0" dy="0em">Wood Products</tspan></text></g></g><text class="legendTitle"><tspan x="0" dy="0em">Section</tspan></text></g></g></g>\n`;
+  <g id="legend" transform="translate(59830,19500)"><g transform="translate(5,0)"><g class="legendColor" transform="translate(0,0)"><g class="legendCells" transform="translate(0,16)"><g class="cell" transform="translate(0, 0)"><rect class="swatch" height="15" width="15" style="fill: rgb(158, 1, 66);"/><text class="label" transform="translate(20, 0)"><tspan x="0" dy="0em">Animal Hides</tspan></text></g><g class="cell" transform="translate(0, 21)"><rect class="swatch" height="15" width="15" style="fill: rgb(185, 31, 72);"/><text class="label" transform="translate(20, 0)"><tspan x="0" dy="0em">Animal Products</tspan></text></g><g class="cell" transform="translate(0, 42)"><rect class="swatch" height="15" width="15" style="fill: rgb(209, 60, 75);"/><text class="label" transform="translate(20, 0)"><tspan x="0" dy="0em">Animal and Vegetable</tspan><tspan x="0" dy="1.2em">Bi-Products</tspan></text></g><g class="cell" transform="translate(0, 78.609375)"><rect class="swatch" height="15" width="15" style="fill: rgb(228, 86, 73);"/><text class="label" transform="translate(20, 0)"><tspan x="0" dy="0em">Arts and Antiques</tspan></text></g><g class="cell" transform="translate(0, 99.609375)"><rect class="swatch" height="15" width="15" style="fill: rgb(240, 112, 74);"/><text class="label" transform="translate(20, 0)"><tspan x="0" dy="0em">Chemical Products</tspan></text></g><g class="cell" transform="translate(0, 120.609375)"><rect class="swatch" height="15" width="15" style="fill: rgb(248, 142, 83);"/><text class="label" transform="translate(20, 0)"><tspan x="0" dy="0em">Foodstuffs</tspan></text></g><g class="cell" transform="translate(0, 141.609375)"><rect class="swatch" height="15" width="15" style="fill: rgb(252, 172, 99);"/><text class="label" transform="translate(20, 0)"><tspan x="0" dy="0em">Footwear and Headwear</tspan></text></g><g class="cell" transform="translate(0, 162.609375)"><rect class="swatch" height="15" width="15" style="fill: rgb(253, 198, 118);"/><text class="label" transform="translate(20, 0)"><tspan x="0" dy="0em">Instruments</tspan></text></g><g class="cell" transform="translate(0, 183.609375)"><rect class="swatch" height="15" width="15" style="fill: rgb(254, 221, 141);"/><text class="label" transform="translate(20, 0)"><tspan x="0" dy="0em">Machines</tspan></text></g><g class="cell" transform="translate(0, 204.609375)"><rect class="swatch" height="15" width="15" style="fill: rgb(254, 238, 163);"/><text class="label" transform="translate(20, 0)"><tspan x="0" dy="0em">Metals</tspan></text></g><g class="cell" transform="translate(0, 225.609375)"><rect class="swatch" height="15" width="15" style="fill: rgb(251, 248, 176);"/><text class="label" transform="translate(20, 0)"><tspan x="0" dy="0em">Mineral Products</tspan></text></g><g class="cell" transform="translate(0, 246.609375)"><rect class="swatch" height="15" width="15" style="fill: rgb(241, 249, 171);"/><text class="label" transform="translate(20, 0)"><tspan x="0" dy="0em">Miscellaneous</tspan></text></g><g class="cell" transform="translate(0, 267.609375)"><rect class="swatch" height="15" width="15" style="fill: rgb(224, 243, 161);"/><text class="label" transform="translate(20, 0)"><tspan x="0" dy="0em">Paper Goods</tspan></text></g><g class="cell" transform="translate(0, 288.609375)"><rect class="swatch" height="15" width="15" style="fill: rgb(200, 233, 159);"/><text class="label" transform="translate(20, 0)"><tspan x="0" dy="0em">Plastics and Rubbers</tspan></text></g><g class="cell" transform="translate(0, 309.609375)"><rect class="swatch" height="15" width="15" style="fill: rgb(169, 221, 162);"/><text class="label" transform="translate(20, 0)"><tspan x="0" dy="0em">Precious Metals</tspan></text></g><g class="cell" transform="translate(0, 330.609375)"><rect class="swatch" height="15" width="15" style="fill: rgb(137, 207, 165);"/><text class="label" transform="translate(20, 0)"><tspan x="0" dy="0em">Stone And Glass</tspan></text></g><g class="cell" transform="translate(0, 351.609375)"><rect class="swatch" height="15" width="15" style="fill: rgb(105, 189, 169);"/><text class="label" transform="translate(20, 0)"><tspan x="0" dy="0em">Textiles</tspan></text></g><g class="cell" transform="translate(0, 372.609375)"><rect class="swatch" height="15" width="15" style="fill: rgb(78, 164, 176);"/><text class="label" transform="translate(20, 0)"><tspan x="0" dy="0em">Transportation</tspan></text></g><g class="cell" transform="translate(0, 393.609375)"><rect class="swatch" height="15" width="15" style="fill: rgb(66, 136, 181);"/><text class="label" transform="translate(20, 0)"><tspan x="0" dy="0em">Vegetable Products</tspan></text></g><g class="cell" transform="translate(0, 414.609375)"><rect class="swatch" height="15" width="15" style="fill: rgb(74, 108, 174);"/><text class="label" transform="translate(20, 0)"><tspan x="0" dy="0em">Weapons</tspan></text></g><g class="cell" transform="translate(0, 435.609375)"><rect class="swatch" height="15" width="15" style="fill: rgb(94, 79, 162);"/><text class="label" transform="translate(20, 0)"><tspan x="0" dy="0em">Wood Products</tspan></text></g></g><text class="legendTitle"><tspan x="0" dy="0em">Section</tspan></text></g></g></g>\n
+  `;
 
   for(const country of fs.readFileSync('./countries1.tsv').toString().split(/\r?\n/).map(c=>c.split('\t'))){
     if (country.length===3){
       // add continent group
+      //TODO: move the </g> in line 5 to the end of file before </svg>
       svg += `  </g>\n  <g transform="translate(${country[1]},${country[2]})" id="${country[0]}">\n`
       continue;
     }
@@ -172,7 +176,7 @@ async function makeMapGroup(HSx,mapWidth, mapHeight) {
     console.log(oecCode, countryName);
     let singleSvg = await makeMap(HSx, [oecCode], countryName, iso2, xOffset, yOffset);
     if (!singleSvg) {
-      fs.appendFileSync('./countries1.tsv', country.join('\t')+'\n');
+      appendFileSync('./countries1.tsv', country.join('\t')+'\n');
       continue;
     } 
     svg += singleSvg.split('\n').slice(2,-1).join('\n')+'\n';
@@ -185,13 +189,13 @@ async function makeGroupMap(HSx, groupName) {
   const oecCodes = [];
   const iso2s = [];
   const countryNames = [];
-  for(const country of fs.readFileSync('./countries1.tsv').toString().split('\r\n').map(c=>c.split('\t'))){
+  for(const country of readFileSync('./countries1.tsv').toString().split('\r\n').map(c=>c.split('\t'))){
     oecCodes.push(country[0]);
     iso2s.push(country[1]);
     countryNames.push(country[4]);
   }
   let svg = await makeMap(HSx, oecCodes, groupName, groupName, 0, 0);
-  fs.writeFileSync(`./group/${groupName}_trademap.svg`, svg)
+  writeFileSync(`./group/${groupName}_trademap.svg`, svg)
 }
 
 
@@ -199,38 +203,40 @@ function getWidthHeight(area) {
   // https://www.usinflationcalculator.com/ 
   // compare to the end of 2020 (fill-in 2021) as 100%
   const CumulativeInflation = {
-    1995: 1.744,
-    1996: 1.704,
-    1997: 1.678,
-    1998: 1.642,
-    1999: 1.589,
-    2000: 1.546,
-    2001: 1.521,
-    2002: 1.487,
-    2003: 1.448,
-    2004: 1.401,
-    2005: 1.357,
-    2006: 1.319,
-    2007: 1.271,
-    2008: 1.275,
-    2009: 1.255,
-    2010: 1.216,
-    2011: 1.192,
-    2012: 1.174,
-    2013: 1.156,
-    2014: 1.154,
-    2015: 1.140,
-    2016: 1.116,
-    2017: 1.089,
-    2018: 1.070,
-    2019: 1.057,
-    2020: 1.000,
+    1995: 56.24,
+    1996: 57.90,
+    1997: 59.23,
+    1998: 60.15,
+    1999: 61.48,
+    2000: 63.55,
+    2001: 65.32,
+    2002: 66.39,
+    2003: 67.90,
+    2004: 69.71,
+    2005: 72.07,
+    2006: 74.40,
+    2007: 76.52,
+    2008: 79.46,
+    2009: 79.17,
+    2010: 80.47,
+    2011: 83.01,
+    2012: 84.73,
+    2013: 85.97,
+    2014: 87.37,
+    2015: 87.47,
+    2016: 88.57,
+    2017: 90.46,
+    2018: 92.67,
+    2019: 94.35,
+    2020: 95.51,
+    2021: 100.00,
+    2022: 108.00,
   }
   // area in 1k USD; scale to 1px = 10k USD equivalent as of 2020
-  const scale = 0.01 * CumulativeInflation[YEAR];
+  const scale = 1 / CumulativeInflation[YEAR];
   const ratio = 2; //16/9; //1.618;
-  width  = Math.ceil(Math.sqrt(area*scale*ratio));
-  height = Math.ceil(Math.sqrt(area*scale/ratio));
+  const width  = Math.ceil(Math.sqrt(area*scale*ratio));
+  const height = Math.ceil(Math.sqrt(area*scale/ratio));
   return [width, height]
 }
 
