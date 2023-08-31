@@ -5,7 +5,7 @@
 replicaCount: 1
 
 image:
-  repository: doanalyticsdacr.azurecr.io/websites/world-trade-map:latest
+  repository: doanalyticsdacr.azurecr.io/websites/world-trade-map
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
   tag: ""
