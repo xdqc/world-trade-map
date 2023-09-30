@@ -6,7 +6,7 @@ import fetch from 'node-fetch';
 
 // Global config
 const HSx = 'HS4';
-const YEAR = 2021;
+const YEAR = 2022;
 const template = JSON.parse(fs.readFileSync(`./template_${HSx}.json`).toString());
 
 function drawTreemap(countryName, countryISO2, oecCode, HSx, im, titleOffset, data, netPort) {
