@@ -1,9 +1,9 @@
 # World Trade Map 
 
-[![wtm-2021](docs/worldtrademap-2021.png)](https://xdqc.github.io/world-trade-map/)
+[![wtm-2020](docs/wtm_1995_2022.gif)](https://xdqc.github.io/world-trade-map/)
 
 
-Area-preserving pseudo projected cartogram treemaps of world countries annual net import/export in US$ by HS4 categories from 1995 to 2020:
+Area-preserving pseudo projected cartogram treemaps of world countries annual net import/export in US$ by HS4 categories from 1995 to 2022:
 
 [1995](https://xdqc.github.io/world-trade-map/worldtrademap-1995.html)
 [1996](https://xdqc.github.io/world-trade-map/worldtrademap-1996.html)
@@ -31,7 +31,8 @@ Area-preserving pseudo projected cartogram treemaps of world countries annual ne
 [2018](https://xdqc.github.io/world-trade-map/worldtrademap-2018.html)
 [2019](https://xdqc.github.io/world-trade-map/worldtrademap-2019.html)
 [2020](https://xdqc.github.io/world-trade-map/worldtrademap-2020.html)
-[2021](https://xdqc.github.io/world-trade-map/index.html)
+[2021](https://xdqc.github.io/world-trade-map/worldtrademap-2021.html)
+[2022](https://xdqc.github.io/world-trade-map/worldtrademap-2022.html)
 
 The maps present intuitive answers to questions such as:
 
@@ -45,7 +46,6 @@ The maps present intuitive answers to questions such as:
 
 and much more...
 
-[![wtm-2020](docs/wtm_1997-2020.gif)](https://xdqc.github.io/world-trade-map/)
 
 ## FAQ
 
