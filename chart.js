@@ -6,7 +6,7 @@ import fetch from 'node-fetch';
 
 // Global config
 const HSx = 'HS4';
-const YEAR = 2022;
+const YEAR = 2023;
 const template = JSON.parse(fs.readFileSync(`./template_${HSx}.json`).toString());
 
 function drawTreemap(countryName, countryISO2, oecCode, HSx, im, titleOffset, data, netPort) {
@@ -200,8 +200,8 @@ async function makeGroupMap(HSx, groupName) {
 
 
 function getWidthHeight(area) {
-  // https://www.usinflationcalculator.com/ 
-  // compare to the end of 2020 (fill-in 2021) as 100%
+  // https://www.minneapolisfed.org/about-us/monetary-policy/inflation-calculator
+  // Inflation adjusted price compare to 2021 as 100%, based on changes of consumer price index (CPI)
   const CumulativeInflation = {
     1995: 56.24,
     1996: 57.90,
@@ -231,6 +231,7 @@ function getWidthHeight(area) {
     2020: 95.51,
     2021: 100.00,
     2022: 108.00,
+    2023: 112.45,
   }
   // area in 1k USD; scale to 1px = 10k USD equivalent as of 2020
   const scale = 1 / CumulativeInflation[YEAR];
