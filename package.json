@@ -1,0 +1,35 @@
+{
+  "name": "world-trade-map",
+  "description": "[![wtm-2020](docs/wtm_1997-2020.gif)](https://xdqc.github.io/world-trade-map/)",
+  "version": "1.0.0",
+  "main": "chart.js",
+  "type": "module",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xdqc/oec-trade-map.git"
+  },
+  "author": "Samuel Ding",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/xdqc/oec-trade-map/issues"
+  },
+  "homepage": "https://github.com/xdqc/oec-trade-map#readme",
+  "dependencies": {
+    "@rawgraphs/rawgraphs-charts": "^1.0.0-beta.27",
+    "@rawgraphs/rawgraphs-core": "^1.0.0-beta.17",
+    "canvas": "^2.9.1",
+    "canvg": "^4.0.0",
+    "d3": "^7.8.4",
+    "fs": "0.0.1-security",
+    "jsdom": "^19.0.0",
+    "node-fetch": "^3.3.1",
+    "xmldom": "^0.6.0",
+    "yargs": "^17.4.0"
+  }
+}

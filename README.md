@@ -33,6 +33,7 @@ Area-preserving pseudo projected cartogram treemaps of world countries annual ne
 [2020](https://xdqc.github.io/world-trade-map/worldtrademap-2020.html)
 [2021](https://xdqc.github.io/world-trade-map/worldtrademap-2021.html)
 [2022](https://xdqc.github.io/world-trade-map/worldtrademap-2022.html)
+[2023](https://xdqc.github.io/world-trade-map/worldtrademap-2023.html)
 
 The maps present intuitive answers to questions such as:
 
