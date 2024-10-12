@@ -3,7 +3,7 @@
 [![wtm-2020](docs/wtm_1995_2022.gif)](https://xdqc.github.io/world-trade-map/)
 
 
-Area-preserving pseudo projected cartogram treemaps of world countries annual net import/export in US$ by HS4 categories from 1995 to 2022:
+Area-preserving pseudo projected cartogram treemaps of world countries annual net import/export in US$ by HS4 categories from 1995 to 2023:
 
 [1995](https://xdqc.github.io/world-trade-map/worldtrademap-1995.html)
 [1996](https://xdqc.github.io/world-trade-map/worldtrademap-1996.html)
