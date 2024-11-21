@@ -52,25 +52,29 @@ and much more...
 
 ### Gross vs Net import/export
 
-Gross import/export value is the actual import/export values of trading goods per category.
+Gross import/export value is the actual import/export values of trading goods, products or commodities per category.
 
-Net import/export value is the value of deficit/surplus trading goods per category. Each category of trading goods can only be counted as import or export. For instance, a country imports 400B and exports 50B crude oil, the net value only counts 350B crude oil as imports. 
+Net import/export value is the value of deficit/surplus trading goods per category. In this case, each HS4 chapter of trading goods can only be counted as either import or export in the catogram of treemaps. For instance, a country imports 400B and exports 50B crude oil, the net value only counts 350B crude oil as imports. 
 
 The overall summation of all categories *in net* deficit/surplus per country is constantly equal to *in gross* deficit/surplus, no matter how granular the classification of trading goods is calculated. 
 
-### HS2 vs HS4 vs HS6
+### Harmonised System: HS2, HS4 and HS6
 
-HS2 is 2 digits classification code of trading goods, showing as the color of each block. HS4 adds 2 more digits of details to HS2; HS6 adds 2 more digits of details to HS4.
+The Harmonised System, HS, nomenclature allows you to identify precisely your product and check what tariff lines and rules apply. It is a logical structure to classify goods, used uniformly by customs authorities around the world.
 
-The more detailed granularity of classification, the larger net import and net export values respectively. When comparing net import/export values per category, the more details is not necessarily adding more information. Supposing we classify trading goods to extreme granularity per product serial number, ISBN or EAN, the net value would be almost same as gross value, thus calculating net value is mearly useless anymore. 
+- HS2 (sections) is 2 digits classification code of trading goods, showing as the color of each block
+  - HS4 (chapters) adds 2 more digits of details to HS2
+    - HS6 (headings) adds 2 more digits of details to HS4
 
-Comparing to HS4, HS6 adds marginal accuracy, while extra verbosity of lengthy terminologies of most goods. For general readers who are not professional at customs, HS4 descriptions are succinct and more relevant to common sense than HS6, but there are exceptions, i.e., HS4 malt extract majorly means infant milk formula; HS4 photo lab equipment generally means semiconductor lithography system.
+To calculate net import/export, using more detailed granularity of classification, the larger net import and net export values respectively you will get. When comparing net import/export values per category, the more details is not necessarily adding more information. Supposing we classify trading goods to extreme granularity per product serial number, ISBN or EAN, the net value would be almost same as gross value, thus calculating net value is mearly adding insights of net surplus or deficit anymore. 
 
-### Inflation vs Actual trade growth
+Here we drill down to HS4 to make the graph. Comparing to HS4, HS6 adds marginal accuracy, while extra verbosity of lengthy terminologies of most goods. For general audience who are not professional in trading business, HS4 descriptions are succinct and more relevant to common sense than HS6, but there are exceptions, i.e., the HS4 chapter *malt extract* majorly indicates infant milk formula; the HS4 chapter *photo lab equipment* largely means semiconductor lithography system.
 
-The measure of trading values takes into account the time period's inflation rate. So actual trade growths or recessions are correctly represented.
+### Inflation adjusted actual trade growth
 
-Cumulative inflation is adjusted as 2020 US dollar values based on https://www.usinflationcalculator.com/
+To display the actual global trade growth or recessions year over years, the trading values in US dollar are inflation adjusted.
+
+Cumulative inflation is adjusted as worth in 2020, using the tool provided by the U.S. Federal Reserve Bank of Minneapolis https://www.minneapolisfed.org/about-us/monetary-policy/inflation-calculator
 
 ### Groups of countries
 
