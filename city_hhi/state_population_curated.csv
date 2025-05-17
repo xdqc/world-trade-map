@@ -1,0 +1,452 @@
+State,City,Population
+Alabama,Birmingham,774956
+Alabama,Huntsville,329066
+Alabama,Mobile,321907
+Alabama,Montgomery,254348
+Alabama,Tuscaloosa,156450
+Alabama,Auburn,100842
+Alabama,Florence,78925
+Alabama,Anniston - Oxford,78302
+Alabama,Fairhope - Daphne,76807
+Alaska,Anchorage,249252
+Alaska,Fairbanks (incl. Eielson AFB),71396
+Alaska,Wasilla - Knik-Fairview - North Lakes,53444
+Alaska,Anchorage Northeast,29561
+Alaska,Juneau,24756
+Alaska,Ketchikan,11975
+Alaska,Kodiak - Mill Bay,9530
+Alaska,Kenai,8642
+Alaska,Sitka,7668
+Arizona,Phoenix - Mesa - Scottsdale,3976313
+Arizona,Tucson,875441
+Arizona,Phoenix West - Goodyear - Avondale,419946
+Arizona,Yuma,135717
+Arizona,Prescott - Prescott Valley,92427
+Arizona,Flagstaff,79842
+Arizona,Lake Havasu City,59017
+Arizona,Maricopa,57771
+Arizona,Bullhead City,54396
+Arkansas,Little Rock,461864
+Arkansas,Fayetteville - Springdale - Rogers,355002
+Arkansas,Fort Smith,120230
+Arkansas,Memphis,105619
+Arkansas,Texarkana,78744
+Arkansas,Jonesboro,73781
+Arkansas,Conway,66619
+Arkansas,Hot Springs,59133
+Arkansas,Pine Bluff,46683
+California,Los Angeles - Long Beach - Anaheim,12237376
+California,San Francisco - Oakland,3269385
+California,San Diego,3070300
+California,Riverside - San Bernardino,2276703
+California,Sacramento,1946618
+California,San Jose,1837446
+California,Fresno,717589
+California,Mission Viejo - Lake Forest - Laguna Niguel,646843
+California,Bakersfield,570235
+Colorado,Denver - Aurora,2686147
+Colorado,Colorado Springs,632494
+Colorado,Fort Collins,326332
+Colorado,Greeley,137222
+Colorado,Grand Junction,135973
+Colorado,Boulder,120828
+Colorado,Pueblo,120642
+Colorado,Longmont,100776
+Colorado,Lafayette - Erie - Louisville,96485
+Connecticut,Hartford,977158
+Connecticut,Bridgeport - Stamford,824767
+Connecticut,New Haven,561456
+Connecticut,Waterbury,199317
+Connecticut,Norwich - New London,167432
+Connecticut,Danbury,146928
+Connecticut,Springfield,44215
+Connecticut,Torrington,35212
+Connecticut,Worcester,24104
+Delaware,Philadelphia (incl. Pottstown),170884
+Delaware,Dover,123101
+Delaware,Salisbury,78075
+Delaware,Middletown,41851
+Delaware,Lewes - Rehoboth Beach,39681
+Delaware,Ocean Pines - Ocean City,37946
+Delaware,Seaford - Laurel - Bridgeville,29147
+Delaware,Long Neck,20169
+Delaware,Ocean View,18025
+Florida,Miami - Fort Lauderdale,6077522
+Florida,Tampa - St. Petersburg,2783045
+Florida,Orlando,1853896
+Florida,Jacksonville,1247374
+Florida,Bradenton - Sarasota - Venice,779075
+Florida,Cape Coral,599242
+Florida,Palm Bay - Melbourne,510675
+Florida,Port St. Lucie,437745
+Florida,Bonita Springs - Estero,425675
+Georgia,Atlanta,4999259
+Georgia,Augusta (Richmond County),345184
+Georgia,Savannah,309466
+Georgia,Columbus,200809
+Georgia,Gainesville,265218
+Georgia,Athens (Clarke County),143213
+Georgia,Warner Robins,141132
+Georgia,Macon,140111
+Georgia,Albany,85960
+Hawaii,Honolulu,853252
+Hawaii,Kailua - Kaneohe (in: Honolulu County),118092
+Hawaii,Kahului - Wailuku,57905
+Hawaii,Hilo,41410
+Hawaii,Kailua - Holualoa (in: Hawaii County),33024
+Hawaii,Kihei,26878
+Hawaii,Pukalani - Haiku-Pauwela - Makawao,23305
+Hawaii,Lahaina - Napili-Honokowai,21398
+Hawaii,Kapaa,18212
+Idaho,Boise City,433180
+Idaho,Nampa,177561
+Idaho,Coeur d'Alene,121831
+Idaho,Idaho Falls,105132
+Idaho,Pocatello,72211
+Idaho,Twin Falls,58808
+Idaho,Lewiston,54798
+Idaho,Rexburg,41330
+Idaho,Ontario - Payette,27806
+Illinois,Chicago,7377985
+Illinois,St. Louis,647897
+Illinois,Rockford,276443
+Illinois,Peoria,259781
+Illinois,Round Lake Beach - McHenry - Grayslake,248738
+Illinois,Springfield,159265
+Illinois,Champaign,147452
+Illinois,Bloomington - Normal,134100
+Illinois,Davenport,114084
+Indiana,Indianapolis,1699881
+Indiana,Chicago,1300762
+Indiana,Fort Wayne,335934
+Indiana,Louisville (Jefferson County),292319
+Indiana,South Bend,223137
+Indiana,Evansville,206855
+Indiana,Lafayette,157100
+Indiana,Elkhart,118559
+Indiana,Bloomington,110103
+Iowa,Des Moines,542486
+Iowa,Cedar Rapids,192844
+Iowa,Davenport,171127
+Iowa,Omaha,163902
+Iowa,Iowa City,126810
+Iowa,Waterloo,114139
+Iowa,Sioux City,79146
+Iowa,Ames,66342
+Iowa,Dubuque,49232
+Kansas,Wichita,500231
+Kansas,Kansas City,334844 
+Kansas,Topeka,148956
+Kansas,Lawrence,94998
+Kansas,St. Joseph,77187
+Kansas,Manhattan,60454
+Kansas,Leavenworth,47570
+Kansas,Salina,46547
+Kansas,Hutchinson,42475
+Kentucky,Louisville (Jefferson County),682078
+Kentucky,Cincinnati,421686 
+Kentucky,Lexington-Fayette,315631
+Kentucky,Bowling Green,97814
+Kentucky,Elizabethtown - Radcliff,76441
+Kentucky,Owensboro,76433
+Kentucky,Paducah,50833
+Kentucky,Huntington,50039
+Kentucky,Clarksville,40189
+Louisiana,New Orleans,914531
+Louisiana,Baton Rouge,631326
+Louisiana,Shreveport,288052
+Louisiana,Lafayette,227316
+Louisiana,Lake Charles,162501
+Louisiana,Houma,145482
+Louisiana,Monroe,119964
+Louisiana,Mandeville - Covington,113763
+Louisiana,Slidell,91587
+Maine,Portland,205356
+Maine,Portsmouth (incl. Kennebunk),95090
+Maine,Dover - Rochester,72391
+Maine,Bangor,61539
+Maine,Lewiston,60743
+Maine,Brunswick,31361
+Maine,Waterville,25529
+Maine,Augusta,24005
+Maine,Sanford,15067
+Maryland,Baltimore,2212038
+Maryland,Washington - Arlington,1552428
+Maryland,Bel Air - Aberdeen,214647
+Maryland,Frederick,176456
+Maryland,Waldorf (St. Charles),118601
+Maryland,Hagerstown,118534
+Maryland,Philadelphia (incl. Pottstown),113923
+Maryland,Salisbury,78075
+Maryland,Lexington Park - California - Chesapeake Ranch Estates,62352
+Massachusetts,Boston,4163909
+Massachusetts,Worcester,457981
+Massachusetts,Springfield,398931
+Massachusetts,Barnstable Town,303269
+Massachusetts,Providence,192871
+Massachusetts,New Bedford,155491
+Massachusetts,Leominster - Fitchburg,111790
+Massachusetts,Nashua,109342
+Massachusetts,Amherst Town - Northampton - Easthampton Town,90570
+Michigan,Detroit,3776890
+Michigan,Grand Rapids,605666
+Michigan,Lansing,318300
+Michigan,Ann Arbor,317689
+Michigan,Flint,298964
+Michigan,Kalamazoo,204562
+Michigan,Muskegon - Norton Shores,166414
+Michigan,South Lyon - Hamburg - Genoa,145963
+Michigan,Saginaw,116058
+Minnesota,Minneapolis - St. Paul,2914866
+Minnesota,Rochester,121587
+Minnesota,St. Cloud,117638
+Minnesota,Duluth,117470
+Minnesota,La Crosse,14830
+Minnesota,Mankato,60206
+Minnesota,Fargo,54054
+Minnesota,Winona,29633
+Minnesota,Stillwater,22032
+Mississippi,Jackson,347693
+Mississippi,Gulfport - Biloxi,236344
+Mississippi,Memphis,211238
+Mississippi,Hattiesburg,80821
+Mississippi,Pascagoula - Gautier,51454
+Mississippi,Tupelo,40233
+Mississippi,Meridian,33809
+Mississippi,Oxford,33518
+Mississippi,Starkville,32812
+Missouri,St. Louis,1509426
+Missouri,Kansas City,1339374
+Missouri,Springfield,282651
+Missouri,Columbia,141831
+Missouri,Lee's Summit,91960
+Missouri,Joplin,86679
+Missouri,St. Joseph,77187
+Missouri,Cape Girardeau,55546
+Missouri,Jefferson City,50775
+Montana,Billings,128787
+Montana,Missoula,88109
+Montana,Great Falls,67097
+Montana,Bozeman,59080
+Montana,Helena,52380
+Montana,Kalispell,36131
+Montana,Butte-Silver Bow,30258
+Montana,Belgrade,18534
+Montana,Havre,9826
+Nebraska,Omaha,655607
+Nebraska,Lincoln,291217
+Nebraska,Grand Island,55099
+Nebraska,Kearney,34526
+Nebraska,Fremont,28292
+Nebraska,Norfolk,27407
+Nebraska,Scottsbluff,25104
+Nebraska,Columbus,24838
+Nebraska,Sioux City,22613
+Nevada,Las Vegas - Henderson - Paradise,2196623
+Nevada,Reno,446529
+Nevada,Carson City,61629
+Nevada,Bullhead City,54396
+Nevada,Pahrump,37498
+Nevada,South Lake Tahoe,31363
+Nevada,Elko,21695
+Nevada,Gardnerville,21338
+Nevada,Incline Village,19441
+New Hampshire,Boston,219101
+New Hampshire,Manchester,163289
+New Hampshire,Nashua,133642
+New Hampshire,Portsmouth (incl. Kennebunk),95090
+New Hampshire,Dover - Rochester,72391
+New Hampshire,Concord,42549
+New Hampshire,Lebanon,30299
+New Hampshire,Laconia,27267
+New Hampshire,Keene,22687
+New Jersey,New York - Jersey City - Newark,3885290
+New Jersey,Philadelphia (incl. Pottstown),569613
+New Jersey,Trenton (incl. Twin Rivers - Hightstown),370422
+New Jersey,Atlantic City - Ocean City - Villas,294921
+New Jersey,Vineland,87226
+New Jersey,Allentown - Bethlehem,62170
+New Jersey,Bridgeton,35666
+New Jersey,Hamburg - Vernon - Highland Lakes (- Franklin),28250
+New Jersey,Browns Mills,27234
+New Mexico,Albuquerque,769837
+New Mexico,Las Cruces,139338
+New Mexico,Santa Fe,94241
+New Mexico,Los Lunas,53365
+New Mexico,Farmington,51763
+New Mexico,Roswell,48831
+New Mexico,Hobbs,44157
+New Mexico,El Paso,42729
+New Mexico,Clovis,39314
+New York,New York - Jersey City - Newark,15541159
+New York,Buffalo,948864
+New York,Rochester,704327
+New York,Albany - Schenectady,593142
+New York,Syracuse,413660
+New York,Poughkeepsie - Newburgh,314766
+New York,Binghamton,155942
+New York,Utica,119059
+New York,Saratoga Springs,75684
+North Carolina,Charlotte,1241886
+North Carolina,Raleigh,1106646
+North Carolina,Winston-Salem,420924
+North Carolina,Durham,396118
+North Carolina,Greensboro,338928
+North Carolina,Fayetteville,325008
+North Carolina,Asheville,285776
+North Carolina,Concord,278612
+North Carolina,Wilmington,255329
+North Dakota,Fargo,162161
+North Dakota,Bismarck,98198
+North Dakota,Minot,50925
+North Dakota,Grand Forks,47712
+North Dakota,Williston,29510
+North Dakota,Dickinson,25674
+North Dakota,Jamestown,15207
+North Dakota,Wahpeton,11290
+North Dakota,Devils Lake,7493
+Ohio,Cleveland,1712178
+Ohio,Columbus,1567254
+Ohio,Cincinnati,1264058
+Ohio,Dayton,674046
+Ohio,Akron,541879
+Ohio,Toledo,482952
+Ohio,Youngstown,320901
+Ohio,Canton,295319
+Ohio,Lorain - Elyria,199067
+Ohio,Middletown,93608
+Oklahoma,Oklahoma City,982276
+Oklahoma,Tulsa,722810
+Oklahoma,Norman,120191
+Oklahoma,Lawton,87464
+Oklahoma,Enid,50194
+Oklahoma,Stillwater,48237
+Oklahoma,Bartlesville,39479
+Oklahoma,Muskogee,35798
+Oklahoma,Shawnee,34245
+Oregon,Portland,2104238
+Oregon,Eugene,270179
+Oregon,Salem,268331
+Oregon,Medford,171640
+Oregon,Bend,106988
+Oregon,Longview,69841
+Oregon,Corvallis,66791
+Oregon,Albany,62074
+Oregon,Grants Pass,55724
+Pennsylvania,Philadelphia (incl. Pottstown),4841706
+Pennsylvania,Pittsburgh,1745039
+Pennsylvania,Allentown - Bethlehem,559533
+Pennsylvania,Harrisburg,490859
+Pennsylvania,Lancaster - Manheim,394530
+Pennsylvania,Scranton,366713
+Pennsylvania,Reading,276278
+Pennsylvania,York,238549
+Pennsylvania,Erie,187820
+Rhode Island,Providence,1093945
+Rhode Island,Warwick,82999
+Rhode Island,Cranston,82635
+Rhode Island,Pawtucket,75321
+Rhode Island,Woonsocket,43135
+Rhode Island,Westerly,24764
+Rhode Island,Newport,24717
+Rhode Island,Central Falls,22543
+Rhode Island,Bristol,22069
+South Carolina,Charleston,684773
+South Carolina,Columbia,590407
+South Carolina,Greenville,387271
+South Carolina,Myrtle Beach - North Myrtle Beach,254116
+South Carolina,Rock Hill,218443
+South Carolina,Spartanburg,196943
+South Carolina,Mauldin - Simpsonville,159506
+South Carolina,Charlotte,137987
+South Carolina,Anderson - Clemson,118369
+South Dakota,Sioux Falls,194283
+South Dakota,Rapid City,85679
+South Dakota,Aberdeen,27982
+South Dakota,Brookings,23674
+South Dakota,Watertown,20643
+South Dakota,Yankton,16022
+South Dakota,Mitchell,15690
+South Dakota,Pierre,14755
+South Dakota,Sioux City,11307
+Tennessee,Nashville-Davidson,1158642
+Tennessee,Memphis,739333
+Tennessee,Knoxville,597257
+Tennessee,Chattanooga,298927
+Tennessee,Murfreesboro,177313
+Tennessee,Clarksville,160758
+Tennessee,Johnson City,128519
+Tennessee,Kingsport,78729
+Tennessee,Cleveland,73918
+Texas,Houston,5853575
+Texas,Dallas - Fort Worth - Arlington,5732354
+Texas,San Antonio,1992689
+Texas,Austin,1809888
+Texas,El Paso,811855
+Texas,McAllen,779553
+Texas,McKinney - Frisco,504803
+Texas,Denton - Lewisville,429461
+Texas,The Woodlands - Conroe,402454
+Utah,Salt Lake City,1178533
+Utah,Ogden - Layton,608857
+Utah,Provo - Orem,588609
+Utah,St. George,134109
+Utah,Logan,113927
+Utah,Cedar City,40899
+Utah,Tooele,34892
+Utah,Payson - Santaquin,31132
+Utah,Brigham City,25827
+Vermont,Burlington,118032
+Vermont,Lebanon,30299
+Vermont,Barre - Montpelier,20014
+Vermont,Rutland,19550
+Vermont,Bennington,13759
+Vermont,St. Albans,11368
+Vermont,Brattleboro,10285
+Vermont,Milton,6417
+Vermont,Middlebury,6154
+Virginia,Washington - Arlington,2330643
+Virginia,Virginia Beach - Norfolk,1451578
+Virginia,Richmond,1059150
+Virginia,Roanoke,217312
+Virginia,Fredericksburg,167679
+Virginia,Lynchburg,125596
+Virginia,Charlottesville,104191
+Virginia,Williamsburg,89585
+Virginia,Winchester,83377
+Washington,Seattle - Tacoma,3544011
+Washington,Portland,2104238
+Washington,Spokane,447279
+Washington,Kennewick - Richland - Pasco,255401
+Washington,Bremerton,224449
+Washington,Olympia - Lacey,208157
+Washington,Marysville,160440
+Washington,Yakima,133145
+Washington,Bellingham,128979
+West Virginia,Charleston,140958
+West Virginia,Huntington,120094
+West Virginia,Morgantown,77620
+West Virginia,Beckley,57468
+West Virginia,Cumberland,46296
+West Virginia,Parkersburg,43750
+West Virginia,Clarksburg,32882
+West Virginia,Fairmont,31694
+West Virginia,Bluefield,28525
+Wisconsin,Milwaukee,1306795
+Wisconsin,Madison,450305
+Wisconsin,Appleton,230967
+Wisconsin,Green Bay,224156
+Wisconsin,Racine,134877
+Wisconsin,Kenosha,125865
+Wisconsin,Eau Claire,105475
+Wisconsin,La Crosse,84043
+Wisconsin,Wausau,77429
+Wyoming,Cheyenne,79250
+Wyoming,Casper,67751
+Wyoming,Gillette,34422
+Wyoming,Laramie,32261
+Wyoming,Rock Springs,25853
+Wyoming,Sheridan,19430
+Wyoming,Green River,11873
+Wyoming,Evanston,11416
+Wyoming,Riverton,11234
