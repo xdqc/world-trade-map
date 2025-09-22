@@ -1,0 +1,178 @@
+Country,Top_Partner,Top_Importer,Top_Exporter,Most_Deficit,Most_Surplus
+Sudan,China,China,China,EU,China
+Hong Kong,China,China,China,EU,China
+Myanmar,China,China,China,EU,China
+Timor-Leste,China,China,China,EU,China
+Bolivia,China,China,China,EU,China
+Benin,China,China,China,USA,China
+Djibouti,China,China,China,USA,China
+Rwanda,China,China,China,USA,China
+Afghanistan,China,China,China,USA,China
+Indonesia,China,China,China,USA,China
+Iran,China,China,China,USA,China
+Macau,China,China,China,USA,China
+Malaysia,China,China,China,USA,China
+Philippines,China,China,China,USA,China
+Singapore,China,China,China,USA,China
+South Korea,China,China,China,USA,China
+Tajikistan,China,China,China,USA,China
+United Arab Emirates,China,China,China,USA,China
+Uzbekistan,China,China,China,USA,China
+Vanuatu,China,China,China,USA,China
+Mozambique,China,EU,China,EU,China
+Uganda,China,EU,China,EU,China
+Bhutan,China,EU,China,EU,China
+Kazakhstan,China,EU,China,EU,China
+Pakistan,China,EU,China,EU,China
+Nauru,China,EU,China,EU,China
+Paraguay,China,EU,China,EU,China
+Comoros,China,EU,China,USA,China
+Ethiopia,China,EU,China,USA,China
+Ghana,China,EU,China,USA,China
+Kenya,China,EU,China,USA,China
+Liberia,China,EU,China,USA,China
+Senegal,China,EU,China,USA,China
+Somalia,China,EU,China,USA,China
+Tanzania,China,EU,China,USA,China
+Togo,China,EU,China,USA,China
+Kyrgyzstan,China,EU,China,USA,China
+Maldives,China,EU,China,USA,China
+Yemen,China,EU,China,USA,China
+Marshall Islands,China,EU,China,USA,China
+Tuvalu,China,EU,China,USA,China
+Argentina,China,EU,China,USA,China
+Samoa,China,USA,China,EU,China
+Tonga,China,USA,China,EU,China
+Cambodia,China,USA,China,USA,China
+Japan,China,USA,China,USA,China
+Jordan,China,USA,China,USA,China
+Nepal,China,USA,China,USA,China
+Thailand,China,USA,China,USA,China
+Vietnam,China,USA,China,USA,China
+Fiji,China,USA,China,USA,China
+Kiribati,China,USA,China,USA,China
+Cameroon,EU,EU,China,EU,China
+Eswatini,EU,EU,China,EU,China
+Lesotho,EU,EU,China,EU,China
+Malawi,EU,EU,China,EU,China
+Niger,EU,EU,China,EU,China
+Nigeria,EU,EU,China,EU,China
+Azerbaijan,EU,EU,China,EU,China
+Bangladesh,EU,EU,China,EU,China
+Burundi,EU,EU,China,USA,China
+India,EU,EU,China,USA,China
+Sri Lanka,EU,EU,China,USA,China
+Syria,EU,EU,China,USA,China
+Norfolk Island,USA,USA,China,USA,China
+Venezuela,USA,USA,China,USA,China
+Algeria,EU,EU,EU,EU,China
+Botswana,EU,EU,EU,EU,China
+Cote d'Ivoire,EU,EU,EU,EU,China
+Libya,EU,EU,EU,EU,China
+Tunisia,EU,EU,EU,EU,China
+North Macedonia,EU,EU,EU,EU,China
+Norway,EU,EU,EU,EU,China
+Egypt,EU,EU,EU,USA,China
+Madagascar,EU,EU,EU,USA,China
+Mauritius,EU,EU,EU,USA,China
+Bahrain,EU,EU,EU,USA,China
+Turkey,EU,EU,EU,USA,China
+Iceland,EU,EU,EU,USA,China
+Israel,EU,USA,EU,USA,China
+Guyana,EU,EU,USA,EU,China
+Costa Rica,USA,USA,USA,EU,China
+El Salvador,USA,USA,USA,EU,China
+Guatemala,USA,USA,USA,EU,China
+Haiti,USA,USA,USA,EU,China
+Honduras,USA,USA,USA,EU,China
+Trinidad and Tobago,USA,USA,USA,EU,China
+Colombia,USA,USA,USA,EU,China
+Canada,USA,USA,USA,USA,China
+Mexico,USA,USA,USA,USA,China
+Nicaragua,USA,USA,USA,USA,China
+Eritrea,China,China,China,China,EU
+Guinea,China,China,China,China,EU
+Republic of the Congo,China,China,China,China,EU
+Zambia,China,China,China,China,EU
+Brunei,China,China,China,China,EU
+Mongolia,China,China,China,China,EU
+Saudi Arabia,China,China,China,China,EU
+Australia,China,China,China,China,EU
+New Zealand,China,China,China,China,EU
+Chile,China,China,China,China,EU
+Chinese Taipei,China,China,China,USA,EU
+Mauritania,China,China,EU,China,EU
+Oman,China,China,EU,China,EU
+New Caledonia,China,China,EU,China,EU
+South Africa,EU,China,EU,China,EU
+Mali,EU,China,EU,USA,EU
+Belarus,EU,China,EU,USA,EU
+Georgia,EU,EU,EU,China,EU
+Gibraltar,EU,EU,EU,China,EU
+Switzerland,EU,EU,EU,China,EU
+Cayman Islands,EU,EU,EU,China,EU
+Cuba,EU,EU,EU,China,EU
+Greenland,EU,EU,EU,China,EU
+Burkina Faso,EU,EU,EU,USA,EU
+Cape Verde,EU,EU,EU,USA,EU
+Central African Republic,EU,EU,EU,USA,EU
+Gambia,EU,EU,EU,USA,EU
+Guinea-Bissau,EU,EU,EU,USA,EU
+Morocco,EU,EU,EU,USA,EU
+Sao Tome and Principe,EU,EU,EU,USA,EU
+Seychelles,EU,EU,EU,USA,EU
+Armenia,EU,EU,EU,USA,EU
+Lebanon,EU,EU,EU,USA,EU
+Palestine,EU,EU,EU,USA,EU
+Albania,EU,EU,EU,USA,EU
+Andorra,EU,EU,EU,USA,EU
+Bosnia and Herzegovina,EU,EU,EU,USA,EU
+Moldova,EU,EU,EU,USA,EU
+Montenegro,EU,EU,EU,USA,EU
+San Marino,EU,EU,EU,USA,EU
+Serbia,EU,EU,EU,USA,EU
+Ukraine,EU,EU,EU,USA,EU
+United Kingdom,EU,EU,EU,USA,EU
+Cook Islands,EU,EU,EU,USA,EU
+French Polynesia,EU,EU,EU,USA,EU
+Palau,EU,USA,EU,USA,EU
+Democratic Republic of the Congo,China,China,China,China,USA
+Sierra Leone,China,China,China,China,USA
+South Sudan,China,China,China,China,USA
+Iraq,China,China,China,China,USA
+Kuwait,China,China,China,China,USA
+Laos,China,China,China,China,USA
+Turkmenistan,China,China,China,China,USA
+Russia,China,China,China,China,USA
+Papua New Guinea,China,China,China,China,USA
+Brazil,China,China,China,China,USA
+Peru,China,China,China,China,USA
+Zimbabwe,China,China,China,EU,USA
+Solomon Islands,China,China,China,EU,USA
+Uruguay,China,China,China,EU,USA
+Chad,EU,EU,China,EU,USA
+Angola,China,China,EU,China,USA
+Gabon,China,China,EU,China,USA
+Qatar,EU,EU,EU,China,USA
+Bermuda,EU,EU,EU,China,USA
+British Virgin Islands,EU,EU,EU,China,USA
+Equatorial Guinea,EU,EU,EU,EU,USA
+Namibia,EU,EU,EU,EU,USA
+Micronesia,China,China,USA,China,USA
+Panama,China,China,USA,EU,USA
+Ecuador,USA,China,USA,China,USA
+Aruba,USA,EU,USA,China,USA
+Dominica,USA,EU,USA,China,USA
+Saint Vincent and the Grenadines,USA,EU,USA,China,USA
+Suriname,USA,EU,USA,China,USA
+Antigua and Barbuda,USA,EU,USA,EU,USA
+Saint Kitts and Nevis,USA,EU,USA,EU,USA
+Bahamas,USA,USA,USA,China,USA
+Barbados,USA,USA,USA,China,USA
+Cura莽ao,USA,USA,USA,China,USA
+Grenada,USA,USA,USA,China,USA
+Montserrat,USA,USA,USA,China,USA
+Saint Lucia,USA,USA,USA,China,USA
+Belize,USA,USA,USA,EU,USA
+Dominican Republic,USA,USA,USA,EU,USA
+Jamaica,USA,USA,USA,EU,USA
