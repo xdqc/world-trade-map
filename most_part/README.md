@@ -2,7 +2,7 @@
 
 ![TIEDS](./US_EU_CN_TIEDS.png "The T.I.E.D.S. Problem") 
 
-### Introduction
+### Problem statement
 
 Consider a set of $n$ trade partners, each engaging in imports and exports with other countries. We are interested in labeling each partner according to five categories derived from their trade data:
 
@@ -12,11 +12,11 @@ Consider a set of $n$ trade partners, each engaging in imports and exports with 
 4. **Deficit (D)** – the partner with the largest import minus export difference.
 5. **Surplus (S)** – the partner with the largest export minus import difference.
 
-A **pattern** is an ordered 5-tuple $(T,I,E,D,S)$ of partners realized by some assignment of import/export numbers with all argmaxes unique.
+A **pattern** is an ordered 5-tuple $(T,I,E,D,S)$ of partners realized by some assignment of import/export numbers with all maxima unique.
 
 The **TIEDS problem** is: 
 
-  > *How many distinct patterns are possible as a function of $n$?*
+  > *How many distinct patterns are possible as a function of n?*
 
 ---
 
