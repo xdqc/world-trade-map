@@ -6,7 +6,7 @@ import fetch from 'node-fetch';
 
 // Global config
 const HSx = 'HS4';
-const YEAR = 2023;
+const YEAR = 2024;
 const template = JSON.parse(fs.readFileSync(`./template_${HSx}.json`).toString());
 
 function drawTreemap(countryName, countryISO2, oecCode, HSx, im, titleOffset, data, netPort) {
@@ -232,6 +232,7 @@ function getWidthHeight(area) {
     2021: 100.00,
     2022: 108.00,
     2023: 112.45,
+    2024: 120,
   }
   // area in 1k USD; scale to 1px = 10k USD equivalent as of 2020
   const scale = 1 / CumulativeInflation[YEAR];
